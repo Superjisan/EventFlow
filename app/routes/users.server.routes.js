@@ -20,7 +20,7 @@ module.exports = function(app) {
 
 	// Setting the facebook oauth routes
 	app.route('/auth/facebook').get(passport.authenticate('facebook', {
-		scope: ['email']
+		scope: ['email', 'user_events', 'user_likes', 'rsvp_event', 'user_location', 'user_interests', 'user_activities']
 	}));
 	app.route('/auth/facebook/callback').get(users.oauthCallback('facebook'));
 
@@ -38,7 +38,9 @@ module.exports = function(app) {
 	app.route('/auth/google/callback').get(users.oauthCallback('google'));
 
 	// Setting the linkedin oauth routes
-	app.route('/auth/linkedin').get(passport.authenticate('linkedin'));
+	app.route('/auth/linkedin').get(passport.authenticate('linkedin',{
+		scope: ['r_fullprofile', 'r_emailaddress', 'r_contactinfo', 'r_network', 'rw_groups']
+	}));
 	app.route('/auth/linkedin/callback').get(users.oauthCallback('linkedin'));
 
 	// Finish by binding the user middleware
