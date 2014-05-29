@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/mean-dev',
+	db: 'mongodb://localhost/eventflow-dev',
 	app: {
-		title: 'MEAN.JS - Development Environment'
+		title: 'EventFlow'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
