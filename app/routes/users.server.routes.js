@@ -43,6 +43,9 @@ module.exports = function(app) {
 	}));
 	app.route('/auth/linkedin/callback').get(users.oauthCallback('linkedin'));
 
+	//seeing user data
+	app.route('/profile').get(users.profile);
+
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);
 };

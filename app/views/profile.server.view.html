@@ -1,0 +1,10 @@
+{% extends 'layout.server.view.html' %}
+
+{% block content%}
+
+
+
+<script>
+  window.user_profile = {{profile | json |safe}}
+</script>
+{% endblock%}}

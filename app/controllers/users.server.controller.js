@@ -47,7 +47,7 @@ exports.signup = function(req, res) {
 	user.provider = 'local';
 	user.displayName = user.firstName + ' ' + user.lastName;
 
-	// Then save the user 
+	// Then save the user
 	user.save(function(err) {
 		if (err) {
 			return res.send(400, {
@@ -374,3 +374,17 @@ exports.removeOAuthProvider = function(req, res, next) {
 		});
 	}
 };
+
+exports.profile = function(req, res){
+	var user = req.user;
+	User.find({'_id': user._id}, function(err, profile){
+		if (err) {
+			res.render('error', {status: 500});
+		} else {
+			res.render('profile', {profile : profile})
+
+		}
+	})
+
+
+}
