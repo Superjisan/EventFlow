@@ -215,7 +215,7 @@ exports.oauthCallback = function(strategy) {
 					return res.redirect('/#!/signin');
 				}
 
-				return res.redirect(redirectURL || '/');
+				return res.redirect('/profile');
 			});
 		})(req, res, next);
 	};
@@ -381,7 +381,9 @@ exports.profile = function(req, res){
 		if (err) {
 			res.render('error', {status: 500});
 		} else {
-			res.render('profile', {profile : profile})
+			res.render('profile', {profile : profile,
+														facebook_data: profile[0].additionalProvidersData.facebook,
+														linkedin_data: profile[0].additionalProvidersData.linkedin})
 
 		}
 	})

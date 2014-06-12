@@ -2,9 +2,75 @@
 
 {% block content%}
 
+<br><br><br><br>
+
+<div class="panel panel-default">
+
+  <!-- Table -->
+  <table class="table">
+    <tr>
+      <th> <h1> Facebook Info </h1></th>
+
+    </tr>
+
+    <tr>
+      <td> Name </td>
+      <td> Email</td>
+      <td> Location</td>
+    </tr>
+
+    <tr>
+      <td> {{facebook_data.first_name}} {{facebook_data.last_name}}</td>
+      <td> {{facebook_data.email}}</td>
+      <td> {{facebook_data.location.name}}</td>
+    </tr>
+
+  </table>
+</div>
+
+<div class="panel panel-default">
+
+  <!-- Table -->
+  <table class="table">
+    <tr>
+      <th> <h1> Linkedin Info </h1></th>
+
+    </tr>
+
+    <tr>
+      <th> Job Title</th>
+      <th> Group Memberships</th>
+      <th> Previous Positions</th>
+    </tr>
+
+    <tr>
+      <td> {{linkedin_data.headline}}</td>
+      <td>
+      {% for i,memberships in linkedin_data.groupMemberships.values%}
+       {{memberships.group.name}};
+      {% endfor %}
+      </td>
+      <td>
+      {% for i,positions in linkedin_data.positions.values%}
+
+        {{positions.title}} at {{positions.company.name}};
+
+      {% endfor%}
+      </td>
+
+    </tr>
+
+  </table>
+</div>
+
+
+
 
 
 <script>
   window.user_profile = {{profile | json |safe}}
+  window.facebook_data = {{facebook_data| json | safe}}
+  window.linkedin_data = {{linkedin_data | json | safe}}
+
 </script>
-{% endblock%}}
+{% endblock%}
